@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, body {
+  font-family: 'Roboto Slab', serif;
+}
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+/* Customize the appearance of the current time indicator */
+.rbc-current-time-indicator {
+  display: none;
+  background-color: transparent; /* Remove or change the background color */
+  border: 2px solid green; /* Change the border color and width */
+  height: 2px; /* Adjust the height of the indicator line */
+  width: 100%; /* Ensure the line spans the entire calendar width */
+  position: absolute; /* Ensure it is positioned correctly */
+  z-index: -1; /* Lower z-index value to place it beneath the modal */
+}
