@@ -24,12 +24,12 @@ const LocationSearch = ({ onLocationUpdate }) => {
   const navigate = useNavigate();
 
   const MapHandler = () => {
-    const map = useMap(); // Get the map instance
+    const map = useMap(); 
 
     useEffect(() => {
       if (map && markerPosition) {
         map.flyTo(markerPosition, 13, {
-          duration: 1 // Duration in seconds; adjust this value to speed up or slow down the animation
+          duration: 1 
         });
       }
     }, [markerPosition, map]);
@@ -42,7 +42,7 @@ const LocationSearch = ({ onLocationUpdate }) => {
       click: (e) => {
         const newPosition = [e.latlng.lat, e.latlng.lng];
         setMarkerPosition(newPosition);
-        onLocationUpdate(newPosition); // Pass location to parent
+        onLocationUpdate(newPosition); 
       },
     });
     return null;
@@ -64,9 +64,9 @@ const LocationSearch = ({ onLocationUpdate }) => {
       const data = response.data;
       if (data.length > 0) {
         const { lat, lon } = data[0];
-        const newPosition = [parseFloat(lat), parseFloat(lon)]; // Ensure float format
+        const newPosition = [parseFloat(lat), parseFloat(lon)]; 
         setMarkerPosition(newPosition);
-        onLocationUpdate(newPosition); // Pass location to parent
+        onLocationUpdate(newPosition); 
       } else {
         alert("Location not found");
       }
@@ -76,11 +76,11 @@ const LocationSearch = ({ onLocationUpdate }) => {
   };
 
   const handleSuggestionClick = (lat, lon) => {
-    const newPosition = [parseFloat(lat), parseFloat(lon)]; // Ensure float format
+    const newPosition = [parseFloat(lat), parseFloat(lon)];
     setMarkerPosition(newPosition);
     setSuggestions([]);
     setInputValue("");
-    onLocationUpdate(newPosition); // Pass location to parent
+    onLocationUpdate(newPosition);
   };
 
   const getCurrentLocation = () => {
@@ -88,10 +88,10 @@ const LocationSearch = ({ onLocationUpdate }) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          const newPosition = [parseFloat(latitude), parseFloat(longitude)]; // Ensure float format
+          const newPosition = [parseFloat(latitude), parseFloat(longitude)]; 
           setUserLocation(newPosition);
-          setMarkerPosition(newPosition); // Center marker on current location
-          onLocationUpdate(newPosition); // Pass location to parent
+          setMarkerPosition(newPosition); 
+          onLocationUpdate(newPosition); 
         },
         (error) => {
           console.error("Error getting current location", error);
@@ -104,7 +104,7 @@ const LocationSearch = ({ onLocationUpdate }) => {
   };
 
   useEffect(() => {
-    getCurrentLocation(); // Set initial location on mount
+    getCurrentLocation(); 
   }, []);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const LocationSearch = ({ onLocationUpdate }) => {
 
   const handleNavigateToPlantPicker = () => {
     if (markerPosition) {
-      navigate('/plants'); // Adjust the route as needed
+      navigate('/plants'); 
     } else {
       alert("Please select a location on the map.");
     }
@@ -191,13 +191,6 @@ const LocationSearch = ({ onLocationUpdate }) => {
       ) : (
         <></>
       )}
-{/* 
-      {markerPosition !== null ? 
-        <SoilMoisture location={markerPosition} />
-      :
-        <></>
-      }
-*/}
       <button
         className="max-w-2xl w-full rounded-lg bg-primary px-4 py-2 mt-4 text-background hover:bg-accent duration-200 transition font-semibold"
         onClick={handleNavigateToPlantPicker}
